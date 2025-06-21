@@ -11,7 +11,7 @@ RUN apk add --no-cache \
 
 # Upgrade pip and create venv
 RUN python3 -m ensurepip && \
-    pip3 install --no-cache --upgrade pip setuptools wheel 
+    pip3 install --no-cache --upgrade pip setuptools wheel
 
 # Add venv to path
 ENV PATH="/opt/venv/bin:$PATH"
