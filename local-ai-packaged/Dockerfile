@@ -1,20 +1,26 @@
-# Reference code: https://community.n8n.io/t/how-to-install-python-libraries-with-docker-image-to-use-them-in-n8n/91015/2
 FROM n8nio/n8n
 
 # Switch to root to install packages
 USER root
 
-# Install Python and required build tools
+# Install Python 3 and common build tools (gcc, musl-dev, etc.)
 RUN apk add --no-cache \
     python3 \
-    py3-pip
+    py3-pip \
+    py3-setuptools \
+    py3-wheel \
+    build-base \
+    libffi-dev \
+    openssl-dev \
+    cmake \
+    ninja \
+    git
 
-# Upgrade pip and create venv
-# RUN python3 -m ensurepip && \
-#     pip3 install --no-cache --upgrade pip setuptools wheel && \
-#     python3 -m venv /opt/venv
+# Create and activate virtualenv
+RUN python3 -m venv /opt/venv && \
+    /opt/venv/bin/pip install --upgrade pip setuptools wheel
 
-# Add venv to path
+# Make venv accessible to PATH
 ENV PATH="/opt/venv/bin:$PATH"
 
 # Switch back to node user
