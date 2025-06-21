@@ -20,11 +20,11 @@ RUN apk add --no-cache \
     linux-headers
 
 # Create and activate virtualenv
-RUN python3 -m venv /opt/venv && \
-    /opt/venv/bin/pip install --upgrade pip setuptools wheel
+RUN python3 -m venv /home/node/venv && \
+    /home/node/venv/bin/pip install --upgrade pip setuptools wheel
 
 # Make venv accessible to PATH
-ENV PATH="/opt/venv/bin:$PATH"
+ENV PATH="/home/node/venv/bin:$PATH"
 
 # Switch back to node user
 USER node
