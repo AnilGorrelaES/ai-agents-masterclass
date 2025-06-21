@@ -26,5 +26,8 @@ RUN python3 -m venv /home/node/venv && \
 # Make venv accessible to PATH
 ENV PATH="/home/node/venv/bin:$PATH"
 
+# Ensure node user owns the venv directory
+RUN chown -R node:node /home/node/venv
+
 # Switch back to node user
 USER node
