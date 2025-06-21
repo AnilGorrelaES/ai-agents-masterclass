@@ -9,12 +9,15 @@ RUN apk add --no-cache \
     py3-pip \
     py3-setuptools \
     py3-wheel \
+    python3-dev \
     build-base \
     libffi-dev \
     openssl-dev \
     cmake \
     ninja \
-    git
+    git \
+    openblas-dev \
+    linux-headers
 
 # Create and activate virtualenv
 RUN python3 -m venv /opt/venv && \
